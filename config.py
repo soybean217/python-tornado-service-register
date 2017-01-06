@@ -11,6 +11,6 @@ GLOBAL_SETTINGS = {
         'psw': 'lj87dc6Z',
         'host':"127.0.0.1:3306"
     },
-    "port":48765,
+    "port":8090,
     "geoip2_db_file_path":'E:\\tmp\\GeoLite2-City.mmdb',
 }

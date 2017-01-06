@@ -2,6 +2,7 @@
 
 #restart single and unique process
 pythonFileName="server-register.py"
+logFileName="log.out"
 psid=0
 
 checkpid() {
@@ -27,10 +28,14 @@ mv swap/* bin/ -f
 
 checkpid $pythonFileName
 echo "kill $psid ..."
-#kill $psid
+if [ $psid -ne 0 ];then
+  kill $psid
+fi
 sleep 1s
-mv logs/nohup.out logs/nohup.out.$dt
+mv logs/$logFileName logs/$logFileName.$dt
 cd bin
-#nohup python $pythonFileName > ../logs/nohup.out &
+touch ../logs/$logFileName
+#nohup python $pythonFileName > ../logs/$logFileName 1>../logs/$logFileName 2>../logs/$logFileName &
+nohup python $pythonFileName & > ../logs/$logFileName
 checkpid $pythonFileName
 echo "new pid: $psid ..."
